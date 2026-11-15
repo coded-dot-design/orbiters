@@ -1,0 +1,28 @@
+{
+  "name": "@coded-design/moon-rover",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Moon Rover: drive a little rover round six small round worlds, meet their aliens, run their missions and relight the beacon network. Built on Fizlet, by Chris Cooley.",
+  "license": "MIT",
+  "author": "Chris Cooley (https://coded.design/)",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "npm run typecheck && node scripts/build.mjs",
+    "size": "node scripts/size.mjs",
+    "check": "npm run build && npm run size",
+    "test": "node --expose-gc --test --test-concurrency=1 tests/*.test.mjs",
+    "test:settle": "node tests/settle.mjs",
+    "test:browser": "node tests/browser.mjs",
+    "site:dev": "astro dev --config site/astro.config.mjs",
+    "site:build": "astro build --config site/astro.config.mjs && node scripts/pages.mjs",
+    "test:site": "node tests/site.mjs"
+  },
+  "devDependencies": {
+    "@fzlt/core": "^0.25.0",
+    "astro": "7.4.2",
+    "esbuild": "0.28.2",
+    "playwright": "1.58.2",
+    "typescript": "7.0.2"
+  }
+}

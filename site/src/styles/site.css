@@ -1,0 +1,85 @@
+/* The Moon Rover site: Board UI tokens (the Fizlet kit), flat colours, bold outlines, hard shadows. */
+html.bui{--hot:#ff4fa8;--cyan:#22e6ff;--sun:#ffd166;--mono:ui-monospace,"SF Mono",Menlo,monospace;--round:ui-rounded,"SF Pro Rounded",Nunito,system-ui,sans-serif;background:var(--bg);color:var(--ink);scroll-padding-top:80px}
+html.bui[data-theme="light"]{--hot:#d81b72;--cyan:#0b8fa3;--sun:#b26a00}
+.bui body{margin:0;font:17px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
+.bui a{color:inherit}
+.wrap{width:min(1200px,100% - 32px);margin:0 auto}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;z-index:99;padding:8px 12px;background:var(--surface)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);margin:0}
+.site-head{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:2px solid var(--line)}
+.site-head .wrap{display:flex;align-items:center;gap:20px;min-height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{border-radius:9px;border:2px solid var(--rim)}
+.brand span{display:grid;line-height:1.05}.brand b{font:900 20px var(--round);letter-spacing:.04em}.brand small{font:700 10px var(--mono);color:var(--muted);letter-spacing:.06em}
+.site-nav{display:flex;gap:18px;margin-left:auto;font:800 14px var(--round)}
+.site-nav a{text-decoration:none;color:var(--muted)}.site-nav a:hover{color:var(--ink)}
+.head-keys{display:flex;gap:8px;align-items:center}
+.bui .play-key{min-height:44px;padding:0 16px;text-decoration:none}
+.theme-light{display:none}[data-theme="light"] .theme-light{display:inline}[data-theme="light"] .theme-dark{display:none}
+.eyebrow{margin:0 0 10px;font:800 12px var(--mono);letter-spacing:.12em;color:var(--muted)}
+.eyebrow .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--hot);margin-right:6px}
+.eyebrow .index{color:var(--hot);margin-right:6px}
+h1,h2,h3{font-family:var(--round);font-weight:900;line-height:1.02;margin:0 0 14px}
+h2{font-size:clamp(30px,4.4vw,52px)}h3{font-size:21px}
+em{font-style:normal;color:var(--hot)}
+/* The hero: the game, full bleed; the copy over its left, on a scrim. */
+.dt-hero{position:relative;overflow:hidden;isolation:isolate;min-height:min(860px,calc(100svh - 66px));display:grid;align-items:center;border-bottom:2px solid var(--line);background:#0d0b1c}
+.dt-stage{position:absolute;inset:0;z-index:0}
+.dt-poster{position:absolute;inset:0;z-index:0}.dt-poster img{width:100%;height:100%;object-fit:cover;display:block}
+.dt-copy{position:relative;z-index:1;pointer-events:none;padding:56px 0}
+.dt-copy>*{max-width:560px}
+.dt-copy a,.dt-copy .bui-key{pointer-events:auto}
+.dt-hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,color-mix(in srgb,#0d0b1c 82%,transparent) 0%,color-mix(in srgb,#0d0b1c 50%,transparent) 38%,transparent 62%)}
+.dt-copy .eyebrow{color:#cfc6f5}
+.dt-hero h1{font-size:clamp(46px,7.6vw,104px);color:#f6f3ff;text-shadow:4px 4px 0 #07060f}
+.dt-hero h1 em{color:#ff4fa8}
+.dt-hero .lead{font:700 clamp(17px,1.6vw,21px)/1.45 var(--round);color:#ece8ff;text-shadow:0 2px 0 #07060f;margin:0 0 26px}
+.dt-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+.bui .start-key{display:inline-grid;justify-items:center;gap:2px;min-width:200px;padding:16px 30px;text-decoration:none;background:var(--k-go);color:var(--rim);border:3px solid var(--rim);border-radius:18px;box-shadow:6px 6px 0 var(--rim);rotate:-2deg}
+.bui .start-key b{font:900 44px/1 var(--round);letter-spacing:.06em}.bui .start-key span{font:800 12px var(--mono);letter-spacing:.08em}
+.bui .start-key:hover{translate:-2px -2px;box-shadow:8px 8px 0 var(--rim)}
+.dt-tap{margin:0;font:800 14px var(--round);color:#cfc6f5}
+.section{padding:72px 0;border-bottom:2px solid var(--line)}
+.panel{background:var(--surface);border:2px solid var(--rim);border-radius:14px;box-shadow:5px 5px 0 var(--rim);padding:20px 22px}
+html.bui[data-theme="light"] .panel{box-shadow:5px 5px 0 var(--ink)}
+.panel p{margin:0 0 10px;color:var(--muted)}.panel p:last-child{margin-bottom:0}
+.panel.lit{background:var(--raised)}
+.cards{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.cards.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.cards .n{display:inline-block;font:900 13px var(--mono);color:var(--rim);background:var(--hot);padding:3px 8px;border-radius:6px;margin-bottom:12px}
+.modes{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.modes li{display:grid;align-content:start;gap:4px}
+.modes .tier{font:800 14px var(--mono);letter-spacing:.14em;color:var(--hot)}
+.modes .meta{font:800 12px var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.modes .bui-key{justify-self:start;margin-top:8px;min-height:44px;padding:0 18px;text-decoration:none}
+.split{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:start}
+.split>div>p{color:var(--muted);max-width:60ch}
+.bricks{list-style:none;padding:0;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.bricks code{display:inline-block;font:700 13px var(--mono);padding:6px 10px;border:2px solid var(--rim);border-radius:8px;background:var(--surface)}
+.by .bui-key{margin-top:14px;min-height:44px;padding:0 18px;text-decoration:none}
+.site-foot{padding:30px 0 40px;font:14px var(--round);color:var(--muted)}
+.site-foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}.site-foot p{margin:0}
+/* The game page: the stage is the screen under the header. */
+.play-stage{position:relative;height:calc(100svh - 66px);min-height:420px;background:#0d0b1c}
+.play-host{position:absolute;inset:0}
+[data-app] .site-nav{display:none}
+@media (max-width:1000px){.cards,.modes{grid-template-columns:repeat(2,minmax(0,1fr))}.cards.three{grid-template-columns:repeat(2,minmax(0,1fr))}.split{grid-template-columns:1fr}.site-nav{display:none}.head-keys{margin-left:auto}}
+@media (max-width:560px){.cards,.modes,.cards.three{grid-template-columns:1fr}.brand small{display:none}.section{padding:52px 0}
+.dt-hero{min-height:calc(100svh - 66px);align-items:end}.dt-hero::before{background:linear-gradient(0deg,color-mix(in srgb,#0d0b1c 88%,transparent) 0%,color-mix(in srgb,#0d0b1c 55%,transparent) 42%,transparent 70%)}.dt-copy{padding:24px 0 28px}}
+@media (pointer:coarse) and (max-width:900px){[data-app] .site-head{display:none}[data-app] .play-stage{height:100svh}}
+[data-app] .head-keys{margin-left:auto}
+.bui .start-key{background:#39ffb0}.bui .start-key b,.bui .start-key span{color:#07060f}
+.brand b{white-space:nowrap}
+@media (max-width:560px){.brand b{font-size:17px}.head-keys{gap:6px}}
+.modes .panel{display:grid;align-content:start;gap:4px}
+.modes .meta,.cards .meta{font:800 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--hot)}
+.soon{margin:22px 0 0;font:800 15px var(--round);color:var(--muted)}
+.dt-hero h1 em{display:inline-block;font-size:.58em;line-height:1.05}
+/* Moon Rover: the worlds as little orbs. */
+.worlds{grid-template-columns:repeat(3,minmax(0,1fr))}
+.worlds .orb{display:block;width:64px;height:64px;border-radius:50%;margin-bottom:10px;border:2.5px solid var(--rim);background:radial-gradient(circle at 34% 30%,var(--b) 0 16%,var(--a) 17% 58%,var(--c) 59%);box-shadow:0 0 0 4px var(--r),4px 4px 0 var(--rim)}
+@media (max-width:1000px){.worlds{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.worlds{grid-template-columns:1fr}}
+.dt-hero{background:#03041a}
+.dt-hero::before{background:linear-gradient(90deg,rgba(3,4,26,.88) 0%,rgba(3,4,26,.6) 36%,rgba(3,4,26,0) 62%)}
+@media (max-width:560px){.dt-hero::before{background:linear-gradient(0deg,rgba(3,4,26,.92) 0%,rgba(3,4,26,.6) 44%,rgba(3,4,26,0) 70%)}}

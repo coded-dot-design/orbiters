@@ -1,0 +1,16 @@
+{
+  "id": "moon-rover",
+  "author": "Chris Cooley",
+  "license": "MIT",
+  "name": "Moon Rover",
+  "kind": "DOM DRIVE + EXPLORE",
+  "tagline": "Six small worlds. One rover.",
+  "description": "Drive a little rover round six small round worlds, meet their aliens, run their missions and relight the beacon network. Customise your pilot and rover in the garage.",
+  "accent": "cyan",
+  "icon": "rover",
+  "controls": [
+    "Arrows / WASD — gas, brake, steer",
+    "E / Enter — talk (ACT)",
+    "Space — fire · Shift — boost · J — jump · M — mute"
+  ]
+}

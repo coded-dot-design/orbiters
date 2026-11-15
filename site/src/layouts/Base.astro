@@ -1,0 +1,69 @@
+---
+// Every page: a Board UI root (<html class="bui">) wearing the Fizlet kit's tokens; the theme is
+// shared with the DOM VIRUS family (localStorage "dom-virus:theme"), dark by default.
+import '@fzlt/core/ui/board-ui.css';
+import '../styles/site.css';
+import { VERSION, REPO, HUB, base } from '../site';
+const { title, description, page = 'home', app = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en" class="bui" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content={app ? "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" : "width=device-width, initial-scale=1, viewport-fit=cover"} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#0d0b1c" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(base('shots/og.jpg'), Astro.site)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href={base('icon.svg')} type="image/svg+xml" />
+    <script is:inline>
+      try {
+        var t = localStorage.getItem("dom-virus:theme");
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <slot name="head" />
+  </head>
+  <body data-page={page} data-app={app ? "" : undefined}>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-head">
+      <div class="wrap">
+        <a class="brand" href={base()} aria-label="Moon Rover home">
+          <img src={base('icon.svg')} alt="" width="36" height="36" />
+          <span><b>MOON ROVER</b><small>V{VERSION} · BY CHRIS COOLEY</small></span>
+        </a>
+        <nav class="site-nav" aria-label="Site">
+          <a href={base('#how')}>How to play</a>
+          <a href={base("#worlds")}>Worlds</a>
+          <a href={base("#aliens")}>Aliens</a><a href={base("#garage")}>Garage</a>
+          <a href={base('#fizlet')}>Built on Fizlet</a>
+          <a href={HUB}>DOM VIRUS ↗</a>
+        </nav>
+        <div class="head-keys">
+          <a class="bui-key bui-icon-key" href={REPO} aria-label="Source on GitHub"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg></a>
+          <button class="bui-key bui-icon-key" type="button" data-theme-toggle aria-label="Switch light or dark"><span class="theme-dark" aria-hidden="true">☾</span><span class="theme-light" aria-hidden="true">☀</span></button>
+          <a class="bui-key bui-arcade bui-go play-key" href={base('play/')}>▶ Play</a>
+        </div>
+      </div>
+    </header>
+    <main id="main"><slot /></main>
+    {!app && <footer class="site-foot"><div class="wrap"><p><b>Moon Rover</b> · a game by <a href="https://coded.design/">Chris Cooley</a> · built on <a href="https://fizlet.com/">Fizlet</a> · part of the <a href={HUB}>DOM VIRUS</a> family</p><p><a href={base('play/')}>Play</a> · <a href={REPO}>Source (MIT)</a></p></div></footer>}
+    <script>
+      const html = document.documentElement;
+      document.querySelector("[data-theme-toggle]")?.addEventListener("click", () => {
+        const next = html.dataset.theme === "light" ? "dark" : "light";
+        html.dataset.theme = next;
+        try {
+          localStorage.setItem("dom-virus:theme", next);
+        } catch {}
+      });
+    </script>
+  </body>
+</html>

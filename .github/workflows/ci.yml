@@ -1,0 +1,28 @@
+name: Moon Rover checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  check:
+    # Pinned: ubuntu-latest is moving to 26.04, which Playwright 1.58 does not support yet.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      # Typecheck, build dist/ (committed: it must be the build of this commit), size.
+      - run: npm run check
+      - run: git diff --exit-code -- dist
+      - run: node -e "const p=require('./package.json'); if (Object.keys(p.dependencies||{}).length) { console.error('Moon Rover ships no runtime dependencies'); process.exit(1) }"
+      # Headless: the bike, tune(), the profile, every mode on every starter, the economy, allocation.
+      - run: npm test
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:settle
+      - run: npm run test:browser
+      # The site (landing, /play/), built for github.io; pages.yml deploys it.
+      - run: npm run site:build
+      - run: npm run test:site

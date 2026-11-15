@@ -1,0 +1,110 @@
+---
+// Moon Rover, the landing page. The hero is the game itself: Pebble on the autopilot, the world
+// turning under the rover; reduced motion shows a still poster that links to /play/.
+import Base from '../layouts/Base.astro';
+import { base, GZIP, FIZLET, REPO } from '../site';
+import { PLANETS } from '../../../src/planets.ts';
+const description = 'Moon Rover: drive a little rover round six small round worlds, meet their aliens, take their missions and relight the beacon network. Customise your pilot and rover in the garage. Free in the browser, by Chris Cooley, built on Fizlet.';
+const kb = (GZIP / 1024).toFixed(1);
+const steps = [
+  ['DRIVE A ROUND WORLD', 'Each world is a small ball you can drive all the way round. The rover stays on top; the world turns under it. Day on one side, night on the other.'],
+  ['MEET THE LOCALS', 'Drive up to a friendly alien and tap ACT (E on a keyboard). The elder gives you a mission; the trader buys your crystals; the outpost hands out boosts and shields.'],
+  ['RUN THE MISSION', 'Collect, race, deliver, rescue, defend. Hostile aliens come out on the night side: they ram, they steal. FIRE shoots them; the sun burns them up.'],
+  ['LIGHT IT, LAUNCH', 'A finished mission lights that world\'s beacon and opens the launch pad. Drive onto it and warp to the next world. Six beacons relight the whole network.'],
+];
+const KIND: Record<string, string> = { collect: 'Collect', race: 'Race', deliver: 'Deliver', rescue: 'Rescue', defend: 'Defend', beacon: 'The finale' };
+const bricks = ['kernel', 'diorama', 'drive', 'input', 'pad', 'fx', 'sound', 'touch', 'ui'];
+---
+<Base title="Moon Rover · six small worlds, one rover" description={description}>
+  <section class="dt-hero" aria-labelledby="dt-title">
+    <div class="dt-stage" id="dt-hero" aria-label="Moon Rover demo drive"></div>
+    <a class="dt-poster" href={base('play/')} hidden><img src={base('shots/hero.jpg')} alt="Moon Rover: a little rover driving over a small grey moon under a ringed planet" width="1600" height="900" /></a>
+    <div class="wrap dt-copy">
+      <p class="eyebrow"><span class="dot"></span> A DOM VIRUS GAME · BY CHRIS COOLEY</p>
+      <h1 id="dt-title">Moon Rover.<br /><em>Six small worlds. One rover.</em></h1>
+      <p class="lead">Drive round tiny planets, meet their aliens, run their missions and relight the beacon network, one world at a time. Then make the rover and the pilot your own.</p>
+      <div class="dt-ctas">
+        <a class="bui-key bui-sticker-key bui-call start-key" href={base('play/')}><b>PLAY</b><span>free · in your browser</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="wrap">
+      <p class="eyebrow"><span class="index">01</span> HOW TO PLAY</p>
+      <h2>Drive, talk, help, launch.</h2>
+      <ol class="cards">
+        {steps.map(([k, b], i) => <li class="panel"><span class="n">0{i + 1}</span><h3>{k}</h3><p>{b}</p></li>)}
+      </ol>
+      <p class="soon">Keys: arrows or WASD drive · E talks · Space fires · Shift boosts · J jumps · M mutes. Phone: the stick on the left, FIRE, BOOST, ACT and JUMP on the right.</p>
+    </div>
+  </section>
+
+  <section class="section" id="worlds">
+    <div class="wrap">
+      <p class="eyebrow"><span class="index">02</span> THE WORLDS</p>
+      <h2>Six planets, each its own ride.</h2>
+      <ol class="modes worlds">
+        {PLANETS.map((w, i) => (
+          <li class="panel">
+            <span class="orb" style={`--a:${w.dark[1]};--b:${w.dark[4]};--c:${w.dark[7]};--r:${w.ring ? w.ally[0] : 'transparent'}`} aria-hidden="true"></span>
+            <p class="meta">{i + 1} · {w.surface}</p>
+            <h3>{w.name}</h3>
+            <p>{w.blurb}</p>
+            <p class="meta">{KIND[w.mission.kind]}: {w.mission.title}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="aliens">
+    <div class="wrap">
+      <p class="eyebrow"><span class="index">03</span> THE ALIENS</p>
+      <h2>Friends on the day side. Trouble on the night side.</h2>
+      <ul class="cards three">
+        {PLANETS.map((w) => <li class="panel"><p class="meta">{w.name}</p><h3>{w.friend.name}</h3><p>“{w.friend.lines[0]}”</p><p class="meta">vs {w.foe.name}{w.steal ? ' · they steal crystals' : ''}</p></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="garage">
+    <div class="wrap">
+      <p class="eyebrow"><span class="index">04</span> THE GARAGE</p>
+      <h2>Your pilot. Your rover.</h2>
+      <ul class="cards">
+        <li class="panel"><h3>Rover</h3><p>Three bodies (Scout, Hauler, Dart), three wheel styles, eight flat colours for paint and trim, four decals.</p></li>
+        <li class="panel"><h3>Pilot</h3><p>Suit colour, helmet (Dome, Fin, Box) and visor, riding in the cab where you can see them.</p></li>
+        <li class="panel"><h3>Parts</h3><p>Spike tyres for ice, a boost tank, an armour plate, a tow claw. Won on missions or bought with credits.</p></li>
+        <li class="panel"><h3>Saved</h3><p>One profile on this device, plus a save code to carry it to another.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="fizlet">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow"><span class="index">05</span> BUILT ON FIZLET</p>
+        <h2>No libraries. {kb} KB.</h2>
+        <p>Moon Rover is built on <a href="https://fizlet.com/">Fizlet</a>, the micro animation and game engine for the DOM, and nothing else: no framework, no 3D library, no images in the game. The worlds, the rover and the aliens are drawn by Fizlet's bricks on one canvas.</p>
+        <p>The whole game, its Fizlet bricks and its Board UI styles: <b>{GZIP.toLocaleString('en-US')} bytes gzip</b> (measured at build, Fizlet {FIZLET}).</p>
+        <ul class="bricks">{bricks.map((b) => <li><code>@fzlt/core/{b}</code></li>)}</ul>
+      </div>
+      <div class="panel lit by">
+        <p class="eyebrow"><b>BY CHRIS COOLEY</b></p>
+        <h3>It started as a tiny daily.</h3>
+        <p>Moon Rover grew out of a piece in Fizlet's Daily: one rover on one small moon. It kept the driving and the round world, and got a solar system.</p>
+        <p><a href="https://coded.design/">coded.design</a> · <a href={REPO}>Source on GitHub (MIT)</a></p>
+        <a class="bui-key bui-arcade bui-go" href={base('play/')}>▶ Play Moon Rover</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { createMoonRover } from "../../../dist/moon-rover.mjs";
+  const host = document.getElementById("dt-hero")!;
+  const poster = document.querySelector<HTMLElement>(".dt-poster")!;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) poster.hidden = false;
+  else (window as unknown as { hero: unknown }).hero = createMoonRover({ host, attract: true, sound: false });
+</script>
