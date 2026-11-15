@@ -2,7 +2,7 @@
   "version": "0.1.0",
   "fizlet": "0.25.0",
   "gzip": {
-    "moon-rover.mjs": 64594,
-    "moon-rover.js": 64789
+    "orbiters.mjs": 64591,
+    "orbiters.js": 64783
   }
 }

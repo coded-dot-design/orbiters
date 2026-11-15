@@ -1,4 +1,4 @@
-// Moon Rover's settle guard (Chromium, dist/moon-rover.mjs): the map and the garage sleep (no frames,
+// Orbiters' settle guard (Chromium, dist/orbiters.mjs): the map and the garage sleep (no frames,
 // no audio before a gesture); a world waiting for the first press sleeps; driving it never does, the
 // clock keeping pace with the wall clock with nobody touching anything; scrolled off screen it pauses;
 // the ROVER DOWN card settles; after Recall no frame runs. Waits on state.
@@ -8,7 +8,7 @@ import { chromium } from "playwright";
 import { serve, launchOptions } from "./serve.mjs";
 
 const fixture = readFileSync("tests/fixtures/page.html", "utf8").replace("<p>After it.</p>", '<p>After it.</p><div style="height:3000px"></div>');
-const page = fixture.replace("</body>", `<script>const A = window.AudioContext; window.AudioContext = class extends A { constructor(...a) { super(...a); window.audio = (window.audio || 0) + 1; } };</script><script type="module">import { createMoonRover } from "/dist/moon-rover.mjs"; window.game = createMoonRover({ host: document.getElementById("board"), seed: 4, store: { get: () => null, set() {} } });</script></body>`);
+const page = fixture.replace("</body>", `<script>const A = window.AudioContext; window.AudioContext = class extends A { constructor(...a) { super(...a); window.audio = (window.audio || 0) + 1; } };</script><script type="module">import { createOrbiters } from "/dist/orbiters.mjs"; window.game = createOrbiters({ host: document.getElementById("board"), seed: 4, store: { get: () => null, set() {} } });</script></body>`);
 const server = await serve(".", { "/": page });
 const browser = await chromium.launch(launchOptions());
 const until = (p, fn, arg, what, timeout = 30000) => p.waitForFunction(fn, arg, { timeout, polling: 50 }).catch(() => assert.fail(`${what}: timed out`));
@@ -44,7 +44,7 @@ try {
   assert.equal(await frames(p), 0, "down card: no frames");
   await p.evaluate(() => game.destroy());
   assert.equal(await frames(p), 0, "after Recall: no frames");
-  console.log("Moon Rover: settle guard green (map, garage, a waiting world and the down card sleep; driving never does; off screen pauses; quiet after Recall).");
+  console.log("Orbiters: settle guard green (map, garage, a waiting world and the down card sleep; driving never does; off screen pauses; quiet after Recall).");
 } finally {
   await browser.close();
   await server.close();

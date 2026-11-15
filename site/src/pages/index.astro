@@ -1,10 +1,10 @@
 ---
-// Moon Rover, the landing page. The hero is the game itself: Pebble on the autopilot, the world
+// Orbiters, the landing page. The hero is the game itself: Pebble on the autopilot, the world
 // turning under the rover; reduced motion shows a still poster that links to /play/.
 import Base from '../layouts/Base.astro';
 import { base, GZIP, FIZLET, REPO } from '../site';
 import { PLANETS } from '../../../src/planets.ts';
-const description = 'Moon Rover: drive a little rover round six small round worlds, meet their aliens, take their missions and relight the beacon network. Customise your pilot and rover in the garage. Free in the browser, by Chris Cooley, built on Fizlet.';
+const description = 'Orbiters: drive a little rover round six small round worlds, meet their aliens, take their missions and relight the beacon network. Customise your pilot and rover in the garage. Free in the browser, by Chris Cooley, built on Fizlet.';
 const kb = (GZIP / 1024).toFixed(1);
 const steps = [
   ['DRIVE A ROUND WORLD', 'Each world is a small ball you can drive all the way round. The rover stays on top; the world turns under it. Day on one side, night on the other.'],
@@ -15,13 +15,13 @@ const steps = [
 const KIND: Record<string, string> = { collect: 'Collect', race: 'Race', deliver: 'Deliver', rescue: 'Rescue', defend: 'Defend', beacon: 'The finale' };
 const bricks = ['kernel', 'diorama', 'drive', 'input', 'pad', 'fx', 'sound', 'touch', 'ui'];
 ---
-<Base title="Moon Rover · six small worlds, one rover" description={description}>
+<Base title="Orbiters · six small worlds, one rover" description={description}>
   <section class="dt-hero" aria-labelledby="dt-title">
-    <div class="dt-stage" id="dt-hero" aria-label="Moon Rover demo drive"></div>
-    <a class="dt-poster" href={base('play/')} hidden><img src={base('shots/hero.jpg')} alt="Moon Rover: a little rover driving over a small grey moon under a ringed planet" width="1600" height="900" /></a>
+    <div class="dt-stage" id="dt-hero" aria-label="Orbiters demo drive"></div>
+    <a class="dt-poster" href={base('play/')} hidden><img src={base('shots/hero.jpg')} alt="Orbiters: a little rover driving over a small grey moon under a ringed planet" width="1600" height="900" /></a>
     <div class="wrap dt-copy">
       <p class="eyebrow"><span class="dot"></span> A DOM VIRUS GAME · BY CHRIS COOLEY</p>
-      <h1 id="dt-title">Moon Rover.<br /><em>Six small worlds. One rover.</em></h1>
+      <h1 id="dt-title">Orbiters.<br /><em>Six small worlds. One rover.</em></h1>
       <p class="lead">Drive round tiny planets, meet their aliens, run their missions and relight the beacon network, one world at a time. Then make the rover and the pilot your own.</p>
       <div class="dt-ctas">
         <a class="bui-key bui-sticker-key bui-call start-key" href={base('play/')}><b>PLAY</b><span>free · in your browser</span></a>
@@ -86,25 +86,25 @@ const bricks = ['kernel', 'diorama', 'drive', 'input', 'pad', 'fx', 'sound', 'to
       <div>
         <p class="eyebrow"><span class="index">05</span> BUILT ON FIZLET</p>
         <h2>No libraries. {kb} KB.</h2>
-        <p>Moon Rover is built on <a href="https://fizlet.com/">Fizlet</a>, the micro animation and game engine for the DOM, and nothing else: no framework, no 3D library, no images in the game. The worlds, the rover and the aliens are drawn by Fizlet's bricks on one canvas.</p>
+        <p>Orbiters is built on <a href="https://fizlet.com/">Fizlet</a>, the micro animation and game engine for the DOM, and nothing else: no framework, no 3D library, no images in the game. The worlds, the rover and the aliens are drawn by Fizlet's bricks on one canvas.</p>
         <p>The whole game, its Fizlet bricks and its Board UI styles: <b>{GZIP.toLocaleString('en-US')} bytes gzip</b> (measured at build, Fizlet {FIZLET}).</p>
         <ul class="bricks">{bricks.map((b) => <li><code>@fzlt/core/{b}</code></li>)}</ul>
       </div>
       <div class="panel lit by">
         <p class="eyebrow"><b>BY CHRIS COOLEY</b></p>
         <h3>It started as a tiny daily.</h3>
-        <p>Moon Rover grew out of a piece in Fizlet's Daily: one rover on one small moon. It kept the driving and the round world, and got a solar system.</p>
+        <p>Orbiters grew out of a piece in Fizlet's Daily: one rover on one small moon. It kept the driving and the round world, and got a solar system.</p>
         <p><a href="https://coded.design/">coded.design</a> · <a href={REPO}>Source on GitHub (MIT)</a></p>
-        <a class="bui-key bui-arcade bui-go" href={base('play/')}>▶ Play Moon Rover</a>
+        <a class="bui-key bui-arcade bui-go" href={base('play/')}>▶ Play Orbiters</a>
       </div>
     </div>
   </section>
 </Base>
 
 <script>
-  import { createMoonRover } from "../../../dist/moon-rover.mjs";
+  import { createOrbiters } from "../../../dist/orbiters.mjs";
   const host = document.getElementById("dt-hero")!;
   const poster = document.querySelector<HTMLElement>(".dt-poster")!;
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) poster.hidden = false;
-  else (window as unknown as { hero: unknown }).hero = createMoonRover({ host, attract: true, sound: false });
+  else (window as unknown as { hero: unknown }).hero = createOrbiters({ host, attract: true, sound: false });
 </script>

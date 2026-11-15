@@ -1,7 +1,7 @@
 // The profile: one pilot and one rover, saved on this device (localStorage, guarded: a private window
 // or blocked storage just means no save), versioned and migrated step by step, repaired when partial
 // (`normalize`), never written over by an older game when a newer one saved it; an export code
-// (MR1-…, with a checksum) moves it to another device. Credits come from missions and trading
+// (OB1-…, with a checksum) moves it to another device. Credits come from missions and trading
 // crystals; the garage spends them on parts and a few premium looks.
 import { LOOK0, PAINTS, BODIES, WHEELS, HELMETS, DECALS, type Look } from "./rover.ts";
 import { PLANETS, type PartId } from "./planets.ts";
@@ -29,7 +29,7 @@ export interface Profile {
   stats: { crystals: number; kills: number; trips: number };
 }
 export interface Store { get(k: string): string | null; set(k: string, v: string): void }
-export const KEY = "moon-rover:profile";
+export const KEY = "orbiters:profile";
 export const local: Store = {
   get(k) { try { return localStorage.getItem(k); } catch { return null; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch { /* no storage: play on, unsaved */ } },
@@ -93,14 +93,14 @@ export function save(p: Profile, s: Store = local, newer = false) {
 const sum = (t: string) => { let h = 7; for (let i = 0; i < t.length; i++) h = (Math.imul(h, 31) + t.charCodeAt(i)) >>> 0; return (h % 46656).toString(36).padStart(3, "0"); };
 const b64 = (t: string) => btoa(String.fromCharCode(...new TextEncoder().encode(t)));
 const unb64 = (t: string) => new TextDecoder().decode(Uint8Array.from(atob(t), (ch) => ch.charCodeAt(0)));
-/** The export code: MR1-<base64 json>-<checksum>. */
+/** The export code: OB1-<base64 json>-<checksum>. */
 export function exportCode(p: Profile) {
   const body = b64(JSON.stringify(p));
-  return `MR1-${body}-${sum(body)}`;
+  return `OB1-${body}-${sum(body)}`;
 }
 /** Read an export code back; null when it is not one (or a character slipped). */
 export function importCode(code: string): Profile | null {
-  const m = /^MR1-([A-Za-z0-9+/=]+)-([0-9a-z]{3})$/.exec(code.trim());
+  const m = /^OB1-([A-Za-z0-9+/=]+)-([0-9a-z]{3})$/.exec(code.trim());
   if (!m || sum(m[1]!) !== m[2]) return null;
   try {
     const p = JSON.parse(unb64(m[1]!));

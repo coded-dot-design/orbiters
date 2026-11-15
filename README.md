@@ -1,6 +1,6 @@
-# Moon Rover
+# Orbiters
 
-Drive a little rover round six small round worlds, meet their aliens, run their missions and relight the beacon network. A game by [Chris Cooley](https://coded.design/), built on [Fizlet](https://fizlet.com/). Play at <https://moonrover.domvirus.com>.
+Drive a little rover round six small round worlds, meet their aliens, run their missions and relight the beacon network. A game by [Chris Cooley](https://coded.design/), built on [Fizlet](https://fizlet.com/). Play at <https://orbiters.domvirus.com>.
 
 ## The game
 
@@ -14,11 +14,11 @@ Keys: arrows or WASD drive · E talks · Space fires · Shift boosts · J jumps 
 ## Use it
 
 ```js
-import { createMoonRover } from "./dist/moon-rover.mjs";
-const game = createMoonRover({ host: document.getElementById("game") });
+import { createOrbiters } from "./dist/orbiters.mjs";
+const game = createOrbiters({ host: document.getElementById("game") });
 ```
 
-`dist/moon-rover.js` is the same as one script (global `moonRover`). No runtime dependencies: the Fizlet bricks it uses are bundled. `game.destroy()` gives the page back exactly as it was.
+`dist/orbiters.js` is the same as one script (global `orbiters`). No runtime dependencies: the Fizlet bricks it uses are bundled. `game.destroy()` gives the page back exactly as it was.
 
 ## Develop
 

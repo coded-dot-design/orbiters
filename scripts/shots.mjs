@@ -1,9 +1,9 @@
-// The site's stills, from the game itself (dist/moon-rover.mjs) in Chromium: the hero's reduced-motion
+// The site's stills, from the game itself (dist/orbiters.mjs) in Chromium: the hero's reduced-motion
 // poster (shots/hero.jpg, 1600×900) and the share image (shots/og.jpg, 1200×630), both a moment of the
 // attract drive on Pebble. Run after `npm run build`: node scripts/shots.mjs (CHROMIUM_PATH optional).
 import { chromium } from "playwright";
 import { serve, launchOptions } from "../tests/serve.mjs";
-const page = `<!doctype html><html data-theme="dark"><body style="margin:0;background:#03041a"><div id=h style="position:fixed;inset:0"></div><script type=module>import { createMoonRover } from "/dist/moon-rover.mjs"; window.g = createMoonRover({ host: document.getElementById("h"), attract: true, sound: false });</script>`;
+const page = `<!doctype html><html data-theme="dark"><body style="margin:0;background:#03041a"><div id=h style="position:fixed;inset:0"></div><script type=module>import { createOrbiters } from "/dist/orbiters.mjs"; window.g = createOrbiters({ host: document.getElementById("h"), attract: true, sound: false });</script>`;
 const s = await serve(".", { "/": page });
 const b = await chromium.launch(launchOptions());
 try {

@@ -9,13 +9,13 @@ import { mkdirSync, readFileSync } from "node:fs";
 import { chromium } from "playwright";
 import { serve, launchOptions } from "./serve.mjs";
 
-const BASE = (process.env.SITE_BASE || "/moon-rover").replace(/\/$/, "");
+const BASE = (process.env.SITE_BASE || "/orbiters").replace(/\/$/, "");
 const server = await serve("artifacts/pages", {}, BASE);
 const browser = await chromium.launch(launchOptions());
 const SHOTS = process.env.SHOTS;
 if (SHOTS) mkdirSync(SHOTS, { recursive: true });
 const until = (p, fn, arg, what, timeout = 20000) => p.waitForFunction(fn, arg, { timeout, polling: 50 }).catch(() => assert.fail(`${what}: timed out`));
-const gz = JSON.parse(readFileSync("dist/build.json", "utf8")).gzip["moon-rover.mjs"];
+const gz = JSON.parse(readFileSync("dist/build.json", "utf8")).gzip["orbiters.mjs"];
 
 try {
   for (const [w, h, touch] of [[1440, 900, false], [390, 844, true]])
@@ -46,7 +46,7 @@ try {
       });
       assert.equal(m.theme, theme, `${at}: the theme`);
       assert.ok(m.drawn && m.hud, `${at}: the hero draws the drive, no HUD over the copy`);
-      assert.equal(m.h1, "Moon Rover.Six small worlds. One rover.", `${at}: the title and hook`);
+      assert.equal(m.h1, "Orbiters.Six small worlds. One rover.", `${at}: the title and hook`);
       assert.match(m.play, /\/play\/$/, `${at}: PLAY links to /play/`);
       assert.ok(m.playSize && m.sections && m.worlds === 6 && m.by, `${at}: PLAY ≥ 44 px, five sections, six worlds, by Chris Cooley`);
       assert.ok(m.size.includes(`${gz.toLocaleString("en-US")} bytes gzip`), `${at}: the measured size (${gz} B)`);
@@ -67,7 +67,7 @@ try {
   await until(r, () => !document.querySelector(".dt-poster").hidden, null, "reduced motion: the poster");
   assert.equal(await r.evaluate(() => !!window.hero), false, "reduced motion: no game");
   await rm.close();
-  console.log("Moon Rover site: green at 1440 and 390, dark and light; reduced motion shows the poster.");
+  console.log("Orbiters site: green at 1440 and 390, dark and light; reduced motion shows the poster.");
 } finally {
   await browser.close();
   await server.close();

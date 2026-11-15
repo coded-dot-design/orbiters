@@ -1,4 +1,4 @@
-// Moon Rover, the shell: the system map (six worlds, the route the beacons open), the garage (pilot
+// Orbiters, the shell: the system map (six worlds, the route the beacons open), the garage (pilot
 // and rover: looks, parts, the export code), the drive (a world, ./scene.ts) and the flight between
 // worlds. It owns the profile (./profile.ts): the mission rewards, trades and garage buys land in it
 // and it is saved at once. Board UI stickers in a shadow root, so the page and the game never touch
@@ -13,7 +13,7 @@ import { mountWorld, type World } from "./scene.ts";
 import { buildRover, BODIES, WHEELS, HELMETS, DECALS, PAINTS, type Look } from "./rover.ts";
 import { load, save, local, fresh, complete, trade, buyPart, fitPart, setLook, lookPrice, exportCode, importCode, PARTS, PART_PRICE, type Profile, type Store } from "./profile.ts";
 
-export interface MoonRoverOptions {
+export interface OrbitersOptions {
   host?: HTMLElement | null;
   /** The landing hero: Pebble on the autopilot, no menus, no saving. */
   attract?: boolean;
@@ -30,11 +30,11 @@ const ROWS: [keyof Look, string, readonly { name: string }[] | null][] = [
   ["suit", "SUIT", null], ["helmet", "HELMET", HELMETS], ["visor", "VISOR", null],
 ];
 
-export function createMoonRover(o: MoonRoverOptions = {}) {
+export function createOrbiters(o: OrbitersOptions = {}) {
   const dropIn = !o.host, store = o.store ?? local;
   const reduced = typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
   const wrap = document.createElement("div");
-  wrap.setAttribute("data-fizlet-host", "moon-rover");
+  wrap.setAttribute("data-fizlet-host", "orbiters");
   wrap.style.cssText = dropIn ? "position:fixed;inset:0;z-index:2147483000" : "position:absolute;inset:0";
   const engine = createEngine({ root: wrap, settle: 0.5, seed: o.seed ?? 1 });
   const L = engine.ledger, sig = { signal: engine.signal };
@@ -102,7 +102,7 @@ export function createMoonRover(o: MoonRoverOptions = {}) {
   engine.signal.addEventListener("abort", () => pro.disconnect(), { once: true });
 
   // ---- the cards ----
-  const head = () => `<header class="mr-bar"><b class="mr-logo">MOON ROVER</b><span class="mr-chip mr-cr" title="Credits">◈ ${num(profile.credits)}</span><span class="mr-chip">${esc(profile.name)}</span><span class="mr-chip">BEACONS ${profile.cleared.length}/${PLANETS.length}</span></header>`;
+  const head = () => `<header class="mr-bar"><b class="mr-logo">ORBITERS</b><span class="mr-chip mr-cr" title="Credits">◈ ${num(profile.credits)}</span><span class="mr-chip">${esc(profile.name)}</span><span class="mr-chip">BEACONS ${profile.cleared.length}/${PLANETS.length}</span></header>`;
   function mapCard() {
     const items = PLANETS.map((w, i) => {
       const open = profile.unlocked.includes(w.id), done = profile.cleared.includes(w.id), here = w.id === at;
@@ -256,4 +256,4 @@ export function createMoonRover(o: MoonRoverOptions = {}) {
     destroy: () => engine.destroy(),
   };
 }
-export type MoonRover = ReturnType<typeof createMoonRover>;
+export type Orbiters = ReturnType<typeof createOrbiters>;

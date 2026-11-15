@@ -1,9 +1,9 @@
 {
-  "name": "@coded-design/moon-rover",
+  "name": "@coded-design/orbiters",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Moon Rover: drive a little rover round six small round worlds, meet their aliens, run their missions and relight the beacon network. Built on Fizlet, by Chris Cooley.",
+  "description": "Orbiters: drive a little rover round six small round worlds, meet their aliens, run their missions and relight the beacon network. Built on Fizlet, by Chris Cooley.",
   "license": "MIT",
   "author": "Chris Cooley (https://coded.design/)",
   "scripts": {

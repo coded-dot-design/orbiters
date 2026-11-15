@@ -1,8 +1,8 @@
 {
-  "id": "moon-rover",
+  "id": "orbiters",
   "author": "Chris Cooley",
   "license": "MIT",
-  "name": "Moon Rover",
+  "name": "Orbiters",
   "kind": "DOM DRIVE + EXPLORE",
   "tagline": "Six small worlds. One rover.",
   "description": "Drive a little rover round six small round worlds, meet their aliens, run their missions and relight the beacon network. Customise your pilot and rover in the garage.",

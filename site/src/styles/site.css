@@ -1,4 +1,4 @@
-/* The Moon Rover site: Board UI tokens (the Fizlet kit), flat colours, bold outlines, hard shadows. */
+/* The Orbiters site: Board UI tokens (the Fizlet kit), flat colours, bold outlines, hard shadows. */
 html.bui{--hot:#ff4fa8;--cyan:#22e6ff;--sun:#ffd166;--mono:ui-monospace,"SF Mono",Menlo,monospace;--round:ui-rounded,"SF Pro Rounded",Nunito,system-ui,sans-serif;background:var(--bg);color:var(--ink);scroll-padding-top:80px}
 html.bui[data-theme="light"]{--hot:#d81b72;--cyan:#0b8fa3;--sun:#b26a00}
 .bui body{margin:0;font:17px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
@@ -75,7 +75,7 @@ html.bui[data-theme="light"] .panel{box-shadow:5px 5px 0 var(--ink)}
 .modes .meta,.cards .meta{font:800 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--hot)}
 .soon{margin:22px 0 0;font:800 15px var(--round);color:var(--muted)}
 .dt-hero h1 em{display:inline-block;font-size:.58em;line-height:1.05}
-/* Moon Rover: the worlds as little orbs. */
+/* Orbiters: the worlds as little orbs. */
 .worlds{grid-template-columns:repeat(3,minmax(0,1fr))}
 .worlds .orb{display:block;width:64px;height:64px;border-radius:50%;margin-bottom:10px;border:2.5px solid var(--rim);background:radial-gradient(circle at 34% 30%,var(--b) 0 16%,var(--a) 17% 58%,var(--c) 59%);box-shadow:0 0 0 4px var(--r),4px 4px 0 var(--rim)}
 @media (max-width:1000px){.worlds{grid-template-columns:repeat(2,minmax(0,1fr))}}

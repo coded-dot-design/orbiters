@@ -1,4 +1,4 @@
-name: Moon Rover checks
+name: Orbiters checks
 on: [push, pull_request]
 permissions:
   contents: read
@@ -17,7 +17,7 @@ jobs:
       # Typecheck, build dist/ (committed: it must be the build of this commit), size.
       - run: npm run check
       - run: git diff --exit-code -- dist
-      - run: node -e "const p=require('./package.json'); if (Object.keys(p.dependencies||{}).length) { console.error('Moon Rover ships no runtime dependencies'); process.exit(1) }"
+      - run: node -e "const p=require('./package.json'); if (Object.keys(p.dependencies||{}).length) { console.error('Orbiters ships no runtime dependencies'); process.exit(1) }"
       # Headless: the bike, tune(), the profile, every mode on every starter, the economy, allocation.
       - run: npm test
       - run: npx playwright install --with-deps chromium

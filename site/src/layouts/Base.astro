@@ -35,9 +35,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <a class="skip" href="#main">Skip to content</a>
     <header class="site-head">
       <div class="wrap">
-        <a class="brand" href={base()} aria-label="Moon Rover home">
+        <a class="brand" href={base()} aria-label="Orbiters home">
           <img src={base('icon.svg')} alt="" width="36" height="36" />
-          <span><b>MOON ROVER</b><small>V{VERSION} · BY CHRIS COOLEY</small></span>
+          <span><b>ORBITERS</b><small>V{VERSION} · BY CHRIS COOLEY</small></span>
         </a>
         <nav class="site-nav" aria-label="Site">
           <a href={base('#how')}>How to play</a>
@@ -54,7 +54,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       </div>
     </header>
     <main id="main"><slot /></main>
-    {!app && <footer class="site-foot"><div class="wrap"><p><b>Moon Rover</b> · a game by <a href="https://coded.design/">Chris Cooley</a> · built on <a href="https://fizlet.com/">Fizlet</a> · part of the <a href={HUB}>DOM VIRUS</a> family</p><p><a href={base('play/')}>Play</a> · <a href={REPO}>Source (MIT)</a></p></div></footer>}
+    {!app && <footer class="site-foot"><div class="wrap"><p><b>Orbiters</b> · a game by <a href="https://coded.design/">Chris Cooley</a> · built on <a href="https://fizlet.com/">Fizlet</a> · part of the <a href={HUB}>DOM VIRUS</a> family</p><p><a href={base('play/')}>Play</a> · <a href={REPO}>Source (MIT)</a></p></div></footer>}
     <script>
       const html = document.documentElement;
       document.querySelector("[data-theme-toggle]")?.addEventListener("click", () => {

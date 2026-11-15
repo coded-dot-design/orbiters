@@ -1,20 +1,20 @@
 ---
-// Moon Rover, the game: the stage fills the screen under the header. ?world=<id> drives that world
+// Orbiters, the game: the stage fills the screen under the header. ?world=<id> drives that world
 // at once when it is open on this device.
 import Base from '../../layouts/Base.astro';
-const description = 'Play Moon Rover: drive round six small worlds, talk to their aliens, run their missions, relight the beacon network and customise your pilot and rover.';
+const description = 'Play Orbiters: drive round six small worlds, talk to their aliens, run their missions, relight the beacon network and customise your pilot and rover.';
 ---
-<Base title="Play Moon Rover" description={description} page="play" app>
+<Base title="Play Orbiters" description={description} page="play" app>
   <section class="play-stage" aria-labelledby="play-title">
-    <h1 id="play-title" class="sr">Play Moon Rover</h1>
+    <h1 id="play-title" class="sr">Play Orbiters</h1>
     <div id="game" class="play-host"></div>
   </section>
 </Base>
 
 <script>
-  import { createMoonRover } from "../../../../dist/moon-rover.mjs";
+  import { createOrbiters } from "../../../../dist/orbiters.mjs";
   const host = document.getElementById("game")!;
-  const game = createMoonRover({ host });
+  const game = createOrbiters({ host });
   const want = new URLSearchParams(location.search).get("world");
   if (want && game.profile.unlocked.includes(want)) game.drive(want);
   (window as unknown as { game: unknown }).game = game;

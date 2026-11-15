@@ -1,4 +1,4 @@
-// Moon Rover in Chromium (dist/moon-rover.mjs on a plain page): the map mounts and settles with no
+// Orbiters in Chromium (dist/orbiters.mjs on a plain page): the map mounts and settles with no
 // audio; DRIVE mounts Pebble, the world draws, ↑ drives, Space fires; drive up to the elder and E
 // talks (a speech bubble) and takes the mission; the cells count, the hand-in pays and opens Rime
 // (saved); the pad launches the warp and Rime mounts; a garage change is saved and survives a reload;
@@ -10,7 +10,7 @@ import { chromium } from "playwright";
 import { serve, launchOptions } from "./serve.mjs";
 
 const fixture = readFileSync("tests/fixtures/page.html", "utf8");
-const withGame = fixture.replace("</body>", `<script>const A = window.AudioContext; window.AudioContext = class extends A { constructor(...a) { super(...a); window.audio = (window.audio || 0) + 1; } };</script><script type="module">import { createMoonRover } from "/dist/moon-rover.mjs"; window.before = document.body.innerHTML; window.game = createMoonRover({ host: document.getElementById("board"), seed: 3 });</script></body>`);
+const withGame = fixture.replace("</body>", `<script>const A = window.AudioContext; window.AudioContext = class extends A { constructor(...a) { super(...a); window.audio = (window.audio || 0) + 1; } };</script><script type="module">import { createOrbiters } from "/dist/orbiters.mjs"; window.before = document.body.innerHTML; window.game = createOrbiters({ host: document.getElementById("board"), seed: 3 });</script></body>`);
 const server = await serve(".", { "/": withGame });
 const browser = await chromium.launch(launchOptions());
 const until = (p, fn, arg, what, timeout = 20000) => p.waitForFunction(fn, arg, { timeout, polling: 50 }).catch(() => assert.fail(`${what}: timed out`));
@@ -53,7 +53,7 @@ try {
   await until(p, () => game.world.state.near === 0, null, "back at the elder");
   await p.keyboard.press("Enter");
   await until(p, () => game.getSnapshot().cleared.includes("pebble"), null, "the mission is done");
-  const saved = await p.evaluate(() => JSON.parse(localStorage.getItem("moon-rover:profile")));
+  const saved = await p.evaluate(() => JSON.parse(localStorage.getItem("orbiters:profile")));
   assert.deepEqual([saved.cleared, saved.unlocked, saved.credits >= 300], [["pebble"], ["pebble", "rime"], true], "saved: Rime open, paid");
   // The pad: launch, the warp, Rime.
   await p.evaluate(() => game.world.near(game.world.run.pad, 0.5));
@@ -99,7 +99,7 @@ try {
   await q.touchscreen.tap(act[0], act[1]);
   await until(q, () => game.world.state.mission === 1, null, "phone: ACT talks and takes the mission");
   await ph.close();
-  console.log("Moon Rover: browser green (map settles, drive, fire, talk, mission, hand-in, saved, pad → warp → Rime, garage persists, Recall, phone pad + stick + ACT).");
+  console.log("Orbiters: browser green (map settles, drive, fire, talk, mission, hand-in, saved, pad → warp → Rime, garage persists, Recall, phone pad + stick + ACT).");
 } finally {
   await browser.close();
   await server.close();
