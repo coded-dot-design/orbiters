@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "description": "Orbiters: drive a little rover round six small round worlds, meet their aliens, run their missions and relight the beacon network. Built on Fizlet, by Chris Cooley.",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "author": "Chris Cooley (https://coded.design/)",
   "scripts": {
     "typecheck": "tsc --noEmit",

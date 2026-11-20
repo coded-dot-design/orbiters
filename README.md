@@ -1,6 +1,6 @@
 # Orbiters
 
-Drive a little rover round six small round worlds, meet their aliens, run their missions and relight the beacon network. A game by [Chris Cooley](https://coded.design/), built on [Fizlet](https://fizlet.com/). Play at <https://orbiters.domvirus.com>.
+Drive a little rover round six small round worlds, meet their aliens, run their missions and relight the beacon network. A game by [Chris Cooley](https://coded.design/), built on [Fizlet](https://fizlet.com/). Play at <https://orbiters.fzlt.games>.
 
 ## The game
 
@@ -33,4 +33,5 @@ npm run site:build && npm run test:site
 
 Source: `src/orb.ts` (the round world: surface, tiles, the drive ground on a sphere, the camera rule), `src/run.ts` (a visit, headless), `src/scene.ts` (a world on screen), `src/rover.ts` (rover and pilot), `src/planets.ts` (the six worlds), `src/profile.ts` (the save), `src/game.ts` (map, garage, flight).
 
-MIT © Chris Cooley.
+Copyright (c) Chris Cooley. All rights reserved ([LICENSE](LICENSE)). Versions published before this
+change were MIT and stay MIT for anyone who has a copy; the Fizlet engine (`@fzlt/core`) is MIT.
