@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- **New home, new licence.** The game moves to the private repo `fizlet/orbiters` and the address
+  `https://orbiters.fzlt.games` (the site's `SITE_URL` default and canonical; `SITE_BASE` defaults to `/`).
+  From this version the game is all rights reserved (`LICENSE`, `"license": "UNLICENSED"`).
+  Earlier versions were published under the MIT License and stay MIT for anyone who has a copy.
+  The Fizlet engine (`@fzlt/core`, now `fizlet/fzlt`) stays MIT.
+
 ## 0.1.0
 
 - First cut of the full game, grown from the Fizlet gallery daily Moon Rover (#123): the same round-world driving, camera and rover handling.

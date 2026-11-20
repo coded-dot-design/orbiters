@@ -4,7 +4,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join, resolve, dirname } from "node:path";
 const out = resolve("artifacts/pages");
 if (!existsSync(join(out, "index.html"))) throw Error("Run astro build first (npm run site:build).");
-const BASE = `${(process.env.SITE_BASE || "/orbiters").replace(/\/$/, "")}/`;
+const BASE = `${(process.env.SITE_BASE || "/").replace(/\/$/, "")}/`;
 const pages = [];
 const walk = (dir) => readdirSync(dir).forEach((n) => { const f = join(dir, n); statSync(f).isDirectory() ? walk(f) : f.endsWith(".html") && pages.push(f); });
 walk(out);

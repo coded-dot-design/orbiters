@@ -54,7 +54,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       </div>
     </header>
     <main id="main"><slot /></main>
-    {!app && <footer class="site-foot"><div class="wrap"><p><b>Orbiters</b> · a game by <a href="https://coded.design/">Chris Cooley</a> · built on <a href="https://fizlet.com/">Fizlet</a> · part of the <a href={HUB}>DOM VIRUS</a> family</p><p><a href={base('play/')}>Play</a> · <a href={REPO}>Source (MIT)</a></p></div></footer>}
+    {!app && <footer class="site-foot"><div class="wrap"><p><b>Orbiters</b> · a game by <a href="https://coded.design/">Chris Cooley</a> · built on <a href="https://fizlet.com/">Fizlet</a> · part of the <a href={HUB}>DOM VIRUS</a> family</p><p><a href={base('play/')}>Play</a> · <a href={REPO}>Source</a></p></div></footer>}
     <script>
       const html = document.documentElement;
       document.querySelector("[data-theme-toggle]")?.addEventListener("click", () => {

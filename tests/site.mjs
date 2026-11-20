@@ -9,7 +9,7 @@ import { mkdirSync, readFileSync } from "node:fs";
 import { chromium } from "playwright";
 import { serve, launchOptions } from "./serve.mjs";
 
-const BASE = (process.env.SITE_BASE || "/orbiters").replace(/\/$/, "");
+const BASE = (process.env.SITE_BASE || "/").replace(/\/$/, "");
 const server = await serve("artifacts/pages", {}, BASE);
 const browser = await chromium.launch(launchOptions());
 const SHOTS = process.env.SHOTS;
