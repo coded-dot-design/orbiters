@@ -1,5 +1,5 @@
 // After `astro build`: check every local link in the built site resolves (artifacts/pages is exactly
-// what GitHub Pages serves: / the landing page, /play/ the game).
+// what Cloudflare Pages serves: / the landing page, /play/ the game).
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join, resolve, dirname } from "node:path";
 const out = resolve("artifacts/pages");

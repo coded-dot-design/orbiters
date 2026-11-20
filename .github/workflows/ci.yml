@@ -23,6 +23,6 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm run test:settle
       - run: npm run test:browser
-      # The site (landing, /play/), built for orbiters.fzlt.games; pages.yml deploys it.
+      # The site (landing, /play/), built for orbiters.fzlt.games; cloudflare.yml deploys it.
       - run: npm run site:build
       - run: npm run test:site
