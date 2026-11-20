@@ -10,6 +10,8 @@ import { chromium } from "playwright";
 import { serve, launchOptions } from "./serve.mjs";
 
 const BASE = (process.env.SITE_BASE || "/").replace(/\/$/, "");
+// The not-found page (site/src/pages/404.astro): 404.html at the root, noindex, a key home.
+{ const nf = readFileSync("artifacts/pages/404.html", "utf8"); assert.ok(/<meta name="robots" content="noindex/.test(nf) && nf.includes(`href="${BASE}/"`), "404.html is noindex and links home"); }
 const server = await serve("artifacts/pages", {}, BASE);
 const browser = await chromium.launch(launchOptions());
 const SHOTS = process.env.SHOTS;
